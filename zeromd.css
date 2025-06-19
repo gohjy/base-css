@@ -1,0 +1,22 @@
+/* Styles for my use of <zero-md> to render Markdown content */
+/* zero-md: https://zerodevx.github.io/zero-md */
+/* Intended to be used with main.css in the main document */
+/* This stylesheet goes in the template styles within zero-md (see docs) with the append option */
+
+* {
+  font-family: var(--body-font) !important;
+}
+
+.markdown-body {
+  font-size: inherit;
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* These are Google Chrome default sizes */
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }

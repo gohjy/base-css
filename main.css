@@ -1,0 +1,100 @@
+:root {
+    /* custom-font should have been imported and set in a <style> element before this stylesheet is embedded */
+    /* Example: [load Inter from Google Fonts CSS CDN] <style> :root { --custom-font: "Inter"; } </style> */
+    /* Headers will display in Inter, or failing that, the system font stack */
+    --header-font: var(--custom-font), var(--body-font);
+    --body-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Sans-serif font */
+    /* System font stack from VSCode suggested */
+}
+
+:root.serif {
+    /* If we want a serif font instead: */
+    --body-font: "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+    /* Thanks to 101 UX Principles (2nd edition) by Will Grant for the system font stack! */
+    /* Note: the amount of content used is not substantial enough to be copyright infringing */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+
+    font-family: var(--body-font);
+}
+
+button, input, select {
+    font-family: var(--body-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--header-font);
+}
+
+/* These are Chrome UA styles */
+h1 {
+    font-size: 2em;
+}
+h2 { 
+    font-size: 1.5em;
+}
+h3 {
+    font-size: 1.17em;
+}
+
+/* Shortcuts */
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.underline, .uline { text-decoration-line: underline; }
+.overline { text-decoration-line: overline; }
+.strike { text-decoration-line: line-through; }
+:is(.uline, .underline).strike { text-decoration-line: underline line-through; }
+.overline.strike { text-decoration-line: overline line-through; }
+:is(.uline, .underline).overline { text-decoration-line: underline overline; }
+:is(.uline, .underline).overline.strike { text-decoration-line: underline overline line-through; }
+
+.textcent, .textcenter { text-align: center !important; }
+.textleft { text-align: left !important; }
+.textright { text-align: right !important; }
+.textjust, .textjustify { text-align: justify !important; }
+
+.big { font-size: 1.5em; }
+.small { font-size: 0.8em; }
+
+h1.big { font-size: 2.5em; }
+/* For anything else just use a different h* tag */
+
+.flexcenter {
+    /* Perfect centering with flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root.has-sticky :target {
+    /* If there is a sticky element at the top (for example, a navbar), this tells the browser to always position the target element (#id) that height below */
+    /* Requires setting --sticky-height in your own CSS */
+    scroll-margin-top: var(--sticky-height, 0);
+}
+
+/* Specific element styles */
+
+hr {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top-width: 2px;
+    border-top-style: solid;
+    /* Inherits color, and as such border-color as well */
+    color: var(--hr-color, inherit);
+    /* Set the --hr-color variable in your own CSS to specify a color */ 
+}
