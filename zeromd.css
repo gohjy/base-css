@@ -8,7 +8,7 @@
 }
 
 .markdown-body {
-  font-size: inherit;
+  font-size: inherit !important;
   background: transparent !important;
   color: inherit !important;
 }

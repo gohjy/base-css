@@ -1,86 +1,115 @@
-:root {
+:where(:root) {
     /* custom-font should have been imported and set in a <style> element before this stylesheet is embedded */
     /* Example: [load Inter from Google Fonts CSS CDN] <style> :root { --custom-font: "Inter"; } </style> */
     /* Headers will display in Inter, or failing that, the system font stack */
     --header-font: var(--custom-font), var(--body-font);
-    --body-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Sans-serif font */
-    /* System font stack from VSCode suggested */
+
+    --sans-serif-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Sans-serif font */
+    --serif-font: "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Serif font */
+    --monospace-font: Menlo, Consolas, Monaco, "Liberation Mono", "Lucida Console", "Courier New", Courier, monospace;
+    /* These variable font stacks can easily be overridden with custom CSS */
+
+    /* Sans-serif system font stack from VSCode suggested */
+    /* Serif system & monospace font stack from 101 UX Principles (2nd edition) by Will Grant */
+    /* Note: the amount of content used is not substantial enough to be copyright infringing */
+
+    /* Set to sans-serif by default */
+    --body-font: var(--sans-serif-font);
 }
 
-:root.serif {
-    /* If we want a serif font instead: */
-    --body-font: "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+@media (prefers-color-scheme: dark) {
+    /* In dark mode, set the text color to white by default */
+    :where(:root) {
+        --text-color: #ffffff;
+    }
+}
+@media (prefers-color-scheme: light) {
+    /* In light mode, set the text color to black by default */
+    :where(:root) {
+        --text-color: #000000;
+    }
+}
+/* Set --text-color in your CSS to specify a different text color (or set color in body directly) */
 
-    /* Thanks to 101 UX Principles (2nd edition) by Will Grant for the system font stack! */
-    /* Note: the amount of content used is not substantial enough to be copyright infringing */
+:where(:root.serif) {
+    /* If we want a serif font instead: */
+    --body-font: var(--serif-font);
+}
+:where(:root.monospace) {
+    /* Ditto for monospace */
+    --body-font: var(--monospace-font);
 }
 
 * {
     box-sizing: border-box;
 }
 
-html {
+:where(html) {
     scroll-behavior: smooth;
 }
 
-body {
+:where(body) {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 10px;
 
     font-family: var(--body-font);
+    color: var(--text-color);
 }
 
-button, input, select {
+:where(button, input, select) {
     font-family: var(--body-font);
 }
 
-h1, h2, h3, h4, h5, h6 {
+:where(h1, h2, h3, h4, h5, h6) {
     font-family: var(--header-font);
 }
 
 /* These are Chrome UA styles */
-h1 {
+:where(h1) {
     font-size: 2em;
 }
-h2 { 
+:where(h2) { 
     font-size: 1.5em;
 }
-h3 {
+:where(h3) {
     font-size: 1.17em;
 }
 
 /* Shortcuts */
-.bold { font-weight: bold; }
-.italic { font-style: italic; }
-.underline, .uline { text-decoration-line: underline; }
-.overline { text-decoration-line: overline; }
-.strike { text-decoration-line: line-through; }
-:is(.uline, .underline).strike { text-decoration-line: underline line-through; }
-.overline.strike { text-decoration-line: overline line-through; }
-:is(.uline, .underline).overline { text-decoration-line: underline overline; }
-:is(.uline, .underline).overline.strike { text-decoration-line: underline overline line-through; }
+:where(.bold) { font-weight: bold; }
+:where(.italic) { font-style: italic; }
+:where(.underline, .uline) { text-decoration-line: underline; }
+:where(.overline) { text-decoration-line: overline; }
+:where(.strike) { text-decoration-line: line-through; }
+:where(:is(.uline, .underline).strike) { text-decoration-line: underline line-through; }
+:where(.overline.strike) { text-decoration-line: overline line-through; }
+:where(:is(.uline, .underline).overline) { text-decoration-line: underline overline; }
+:where(:is(.uline, .underline).overline.strike) { text-decoration-line: underline overline line-through; }
 
-.textcent, .textcenter { text-align: center !important; }
-.textleft { text-align: left !important; }
-.textright { text-align: right !important; }
-.textjust, .textjustify { text-align: justify !important; }
+:where(.textcent, .textcenter) { text-align: center; }
+:where(.textleft) { text-align: left; }
+:where(.textright) { text-align: right; }
+:where(.textjust, .textjustify) { text-align: justify; }
 
-.big { font-size: 1.5em; }
-.small { font-size: 0.8em; }
+:where(.big) { font-size: 1.5em; }
+:where(.small) { font-size: 0.8em; }
 
-h1.big { font-size: 2.5em; }
+:where(h1.big) { font-size: 2.5em; }
 /* For anything else just use a different h* tag */
 
-.flexcenter {
+:where(.sans-serif) { font-family: var(--sans-serif-font); }
+:where(:not(:root).serif) { font-family: var(--serif-font); }
+
+:where(.flexcenter) {
     /* Perfect centering with flexbox */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-:root.has-sticky :target {
+:where(:root.has-sticky :target) {
     /* If there is a sticky element at the top (for example, a navbar), this tells the browser to always position the target element (#id) that height below */
     /* Requires setting --sticky-height in your own CSS */
     scroll-margin-top: var(--sticky-height, 0);
@@ -88,7 +117,7 @@ h1.big { font-size: 2.5em; }
 
 /* Specific element styles */
 
-hr {
+:where(hr) {
     border-bottom: none;
     border-left: none;
     border-right: none;
