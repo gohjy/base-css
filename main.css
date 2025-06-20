@@ -15,20 +15,29 @@
 
     /* Set to sans-serif by default */
     --body-font: var(--sans-serif-font);
+
+    /* Body padding amount */
+    --body-pad: 10px;
 }
 
-@media (prefers-color-scheme: dark) {
-    /* In dark mode, set the text color to white by default */
-    :where(:root) {
-        --text-color: #ffffff;
-    }
-}
 @media (prefers-color-scheme: light) {
     /* In light mode, set the text color to black by default */
-    :where(:root) {
+    :where(:root:not(.dark)) {
         --text-color: #000000;
+        --bg-color: #ffffff;
     }
 }
+:where(:root.light) {
+    --text-color: #000000;
+    --bg-color: #ffffff;
+}
+
+/* In dark mode, set the text color to white by default */
+:where(:root:not(.light)) {
+    --text-color: #ffffff;
+    --bg-color: #000000;
+}
+
 /* Set --text-color in your CSS to specify a different text color (or set color in body directly) */
 
 :where(:root.serif) {
@@ -53,14 +62,23 @@
     height: 100%;
     width: 100%;
     margin: 0;
-    padding: 10px;
+    padding: var(--body-pad);
 
     font-family: var(--body-font);
     color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+:where(body.pad-inner, :root.pad-inner body) {
+    padding: 0;
+}
+:where(body.pad-inner > *, :root.pad-inner body > *) {
+    padding: var(--body-pad);
 }
 
 :where(button, input, select) {
     font-family: var(--body-font);
+    font-size: inherit;
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
@@ -103,6 +121,7 @@
 :where(.sans-serif) { font-family: var(--sans-serif-font); }
 :where(:not(:root).serif) { font-family: var(--serif-font); }
 
+:where(.flex) { display: flex; }
 :where(.flexcenter) {
     /* Perfect centering with flexbox */
     display: flex;
@@ -115,6 +134,11 @@
     /* Requires setting --sticky-height in your own CSS */
     scroll-margin-top: var(--sticky-height, 0);
 }
+
+:where(.full-width) { width: 100%; }
+:where(.full-height) { height: 100%; }
+
+:where(.invisible) { display: none; }
 
 /* Specific element styles */
 
