@@ -76,7 +76,7 @@
     padding: var(--body-pad);
 }
 
-:where(button, input, select) {
+:where(button, input, select, optgroup, textarea, option) {
     font-family: var(--body-font);
     font-size: inherit;
 }
