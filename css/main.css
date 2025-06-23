@@ -20,13 +20,6 @@
     --body-pad: 10px;
 }
 
-@media (prefers-color-scheme: light) {
-    /* In light mode, set the text color to black by default */
-    :where(:root:not(.dark)) {
-        --text-color: #000000;
-        --bg-color: #ffffff;
-    }
-}
 :where(:root.light) {
     --text-color: #000000;
     --bg-color: #ffffff;
@@ -37,6 +30,15 @@
     --text-color: #ffffff;
     --bg-color: #000000;
 }
+
+@media (prefers-color-scheme: light) {
+    /* In light mode, set the text color to black by default */
+    :where(:root:not(.dark)) {
+        --text-color: #000000;
+        --bg-color: #ffffff;
+    }
+}
+
 
 /* Set --text-color in your CSS to specify a different text color (or set color in body directly) */
 
