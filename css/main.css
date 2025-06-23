@@ -69,6 +69,8 @@
     font-family: var(--body-font);
     color: var(--text-color);
     background-color: var(--bg-color);
+
+    line-height: 1.5;
 }
 
 :where(body.pad-inner, :root.pad-inner body) {
