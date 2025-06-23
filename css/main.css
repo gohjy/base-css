@@ -161,4 +161,5 @@
     /* Inherits color, and as such border-color as well */
     color: var(--hr-color, inherit);
     /* Set the --hr-color variable in your own CSS to specify a color */ 
+    padding: 0;
 }
