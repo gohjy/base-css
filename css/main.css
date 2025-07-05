@@ -23,12 +23,16 @@
 :where(:root.light) {
     --text-color: #000000;
     --bg-color: #ffffff;
+
+    --scrollbar-gutter-color: #00000088;
 }
 
 /* In dark mode, set the text color to white by default */
 :where(:root:not(.light)) {
     --text-color: #ffffff;
     --bg-color: #000000;
+
+    --scrollbar-gutter-color: #ffffff88;
 }
 
 @media (prefers-color-scheme: light) {
@@ -36,6 +40,8 @@
     :where(:root:not(.dark)) {
         --text-color: #000000;
         --bg-color: #ffffff;
+
+        --scrollbar-gutter-color: #00000088;
     }
 }
 
@@ -58,6 +64,7 @@
 
 :where(html) {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable both-edges;
 }
 
 :where(body) {
@@ -73,6 +80,13 @@
     background-color: var(--bg-color);
 
     line-height: 1.5;
+
+    overflow-x: hidden;
+}
+
+:where(body, html) {
+    scrollbar-gutter: stable both-edges;
+    scrollbar-color: #ffffff88 transparent;
 }
 
 :where(body.pad-inner, :root.pad-inner body) {
@@ -153,6 +167,10 @@
 :where(.full-height) { height: 100%; }
 
 :where(.invisible) { display: none; }
+
+:where(body > :not(.no-scroll-x), .scroll-x) {
+    overflow-x: auto;
+}
 
 /* Specific element styles */
 
