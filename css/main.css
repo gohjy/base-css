@@ -86,7 +86,7 @@
 
 :where(body, html) {
     scrollbar-gutter: stable both-edges;
-    scrollbar-color: #ffffff88 transparent;
+    scrollbar-color: var(--scrollbar-gutter-color) transparent;
 }
 
 :where(body.pad-inner, :root.pad-inner body) {
