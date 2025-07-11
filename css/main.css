@@ -1,3 +1,10 @@
+/* CSS styles to perform a default reset and 
+ * define some shorthand styles. With thanks to
+ * Josh W. Comeau for his public domain CSS reset
+ * https://www.joshwcomeau.com/css/custom-css-reset/
+ * from which some styles are taken.
+ */
+
 :where(:root) {
     /* custom-font should have been imported and set in a <style> element before this stylesheet is embedded */
     /* Example: [load Inter from Google Fonts CSS CDN] <style> :root { --custom-font: "Inter"; } </style> */
@@ -57,9 +64,17 @@
     --body-font: var(--monospace-font);
 }
 
-* {
+*, *::before, *::after {
     box-sizing: border-box;
     text-decoration-skip-ink: all;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :where(html) {
+    interpolate-size: allow-keywords;
+  }
 }
 
 :where(html) {
@@ -73,7 +88,7 @@
     margin: 0;
     padding: var(--body-pad);
 
-    font-size: 20px;
+    font-size: 1.25em;
 
     font-family: var(--body-font);
     color: var(--text-color);
@@ -82,6 +97,8 @@
     line-height: 1.5;
 
     overflow-x: hidden;
+  
+    -webkit-font-smoothing: antialiased;
 }
 
 :where(body, html) {
@@ -97,8 +114,7 @@
 }
 
 :where(button, input, select, optgroup, textarea, option) {
-    font-family: var(--body-font);
-    font-size: inherit;
+    font: inherit;
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
@@ -108,6 +124,11 @@
 :where(table, tr, th, td) {
     border-collapse: collapse;
     border-color: unset;
+}
+
+:where(img, picture, video, canvas, svg) {
+  display: block;
+  max-width: 100%;
 }
 
 /* These are Chrome UA styles */
